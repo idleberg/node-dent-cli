@@ -12,6 +12,7 @@
 		"lint": "npm-run-all --parallel lint:*",
 		"prepack": "npm run build",
 		"start": "npm run build -- --watch",
+		"test": "echo \"Tests pending\" && exit 0",
 		"prepare": "husky install"
 	},
 	"files": [
