@@ -35,7 +35,7 @@
 		"formatter"
 	],
 	"dependencies": {
-		"@nsis/dent": "^0.2.0",
+		"@nsis/dent": "^0.2.2",
 		"commander": "^10.0.1",
 		"glob": "^10.2.6",
 		"log-symbols": "^5.1.0",

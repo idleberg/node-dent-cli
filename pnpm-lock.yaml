@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@nsis/dent':
-    specifier: ^0.2.0
-    version: 0.2.0
+    specifier: ^0.2.2
+    version: 0.2.2
   commander:
     specifier: ^10.0.1
     version: 10.0.1
@@ -175,8 +175,8 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
 
-  /@nsis/dent@0.2.0:
-    resolution: {integrity: sha512-0h+c+kXEmp8e4+htkJ14AmyamXiNAT0Z0IomwCu0fR/FiZ43yw7HaR41sNKQHiRxocduqq3hpV1J1ra77rxw8w==}
+  /@nsis/dent@0.2.2:
+    resolution: {integrity: sha512-J1NG4fxAQc5Z4xyOqSx5S9/uIPL8cbOmQd3kMfI+pKAsLYTOfv3To0vZG4wjAWbDziktwFeRb7UCW9kPv918cA==}
     engines: {node: ^14.13.1 || >=16.0.0}
     dependencies:
       detect-newline: 4.0.0
