@@ -17,7 +17,7 @@ This is a TypeScript applicaiton that dependes on a [NodeJS](https://nodejs.org)
 You could install the `dent` CLI globally
 
 ```sh
-$ npm install --global @nsis/dent-cli`
+$ npm install --global @nsis/dent-cli
 $ dent --help
 ```
 
