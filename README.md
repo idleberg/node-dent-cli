@@ -29,6 +29,25 @@ Download and execute the latest version using [`npx`](https://medium.com/@maybek
 $ npx dent --help
 ```
 
+### Options
+
+```
+Usage: index [options] <file...>
+
+CLI tool to format NSIS scripts
+
+Options:
+  -V, --version               output the version number
+  --eol <"crlf"|"lf">         control how line-breaks are represented
+  -i, --indent-size <number>  number of units per indentation level (default: 2)
+  -s, --use-spaces            indent with spaces instead of tabs (default: false)
+  --trim                      trim empty lines (default: true)
+  --write                     edit files in-place (default: false)
+  --quiet                     suppress output (default: false)
+  --debug                     prints additional debug messages (default: false)
+  -h, --help                  display help for command
+```
+
 ## Related
 
 - [`dent` Library](https://www.npmjs.com/package/@nsis/dent)
