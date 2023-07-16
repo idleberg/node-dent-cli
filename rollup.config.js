@@ -1,4 +1,3 @@
-import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import typescript from '@rollup/plugin-typescript';
 
@@ -9,7 +8,6 @@ const defaults = {
     format: 'esm'
   },
   plugins: [
-    commonjs(),
     json(),
     typescript()
   ]
