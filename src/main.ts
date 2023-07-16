@@ -2,7 +2,7 @@ import { Command } from 'commander';
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'node:path';
 import { promises as fs } from 'node:fs';
-import { Dent } from '@nsis/dent';
+import { createFormatter } from '@nsis/dent';
 import { glob } from 'glob'
 import logSymbols from 'log-symbols';
 import colors from 'picocolors';
@@ -39,7 +39,7 @@ async function main() {
 		console.log('\nCLI parameters:', {args, options});
 	}
 
-	const dent = new Dent({
+	const format = createFormatter({
 		endOfLines: options.eol,
 		indentSize: options.indent,
 		trimEmptyLines: options.trim,
@@ -61,7 +61,7 @@ async function main() {
 		}
 
 		const rawContents = (await fs.readFile(file)).toString();
-		const formattedContents = dent.format(rawContents);
+		const formattedContents = format(rawContents);
 
 		if (options.debug) {
 			console.log('\nConversion:', {
