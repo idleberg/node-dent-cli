@@ -4,7 +4,7 @@
 	"description": "An opinionated code formatter for NSIS scripts",
 	"license": "MIT",
 	"scripts": {
-		"build": "rollup --config",
+		"build": "tsup",
 		"dev": "npm run start",
 		"fix": "eslint --fix ./src",
 		"lint:json": "eslint ./*.json --ignore-path .gitignore",
@@ -25,7 +25,7 @@
 		"dent": "index.mjs"
 	},
 	"engines": {
-		"node": "^14.13.1 || >=16.0.0"
+		"node": ">=18.0.0"
 	},
 	"repository": {
 		"type": "git",
@@ -43,8 +43,6 @@
 		"picocolors": "^1.0.0"
 	},
 	"devDependencies": {
-		"@rollup/plugin-json": "^6.0.0",
-		"@rollup/plugin-typescript": "^11.1.2",
 		"@types/node": "^20.2.3",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
@@ -53,7 +51,6 @@
 		"husky": "^8.0.3",
 		"lint-staged": "^13.2.3",
 		"npm-run-all2": "^6.0.6",
-		"rollup": "^3.26.2",
 		"tslib": "^2.6.0",
 		"typescript": "^5.1.6"
 	},
