@@ -21,6 +21,7 @@
 		"README.md"
 	],
 	"type": "module",
+	"typings": "bin/cli.d.ts",
 	"bin": {
 		"dent": "index.mjs"
 	},
@@ -36,23 +37,24 @@
 		"formatter"
 	],
 	"dependencies": {
-		"@nsis/dent": "^0.3.1",
-		"commander": "^10.0.1",
-		"glob": "^10.3.3",
-		"log-symbols": "^5.1.0",
+		"@nsis/dent": "^0.4.1",
+		"commander": "^11.1.0",
+		"glob": "^10.3.10",
+		"log-symbols": "^6.0.0",
 		"picocolors": "^1.0.0"
 	},
 	"devDependencies": {
-		"@types/node": "^20.2.3",
-		"@typescript-eslint/eslint-plugin": "^6.0.0",
-		"@typescript-eslint/parser": "^6.0.0",
-		"eslint": "^8.45.0",
+		"@types/node": "^18.19.3",
+		"@typescript-eslint/eslint-plugin": "^6.16.0",
+		"@typescript-eslint/parser": "^6.16.0",
+		"eslint": "^8.56.0",
 		"eslint-plugin-json": "^3.1.0",
 		"husky": "^8.0.3",
-		"lint-staged": "^13.2.3",
-		"npm-run-all2": "^6.0.6",
-		"tslib": "^2.6.0",
-		"typescript": "^5.1.6"
+		"lint-staged": "^15.2.0",
+		"npm-run-all2": "^6.1.1",
+		"tslib": "^2.6.2",
+		"tsup": "^8.0.1",
+		"typescript": "^5.3.3"
 	},
 	"lint-staged": {
 		"*.(json|ts)": "eslint --cache --fix"
