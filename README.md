@@ -8,7 +8,7 @@
 
 ## Prerequisites
 
-This is a TypeScript application that dependes on a [NodeJS](https://nodejs.org) runtime installed on your computer.
+This is a TypeScript application that depends on a [NodeJS](https://nodejs.org) runtime installed on your computer.
 
 ## Usage
 
