@@ -10,6 +10,6 @@ export default defineConfig((options) => {
 		entry: ['src/cli.ts'],
 		format: 'esm',
 		minify: isProduction,
-		outdir: 'bin',
+		outDir: 'bin',
 	};
 });
