@@ -94,7 +94,7 @@ async function main() {
 				} catch (error) {
 					if (isVerbose) {
 						console.error(
-							`${logSymbols.error} ${colors.blue(file)}\n${colors.dim(error instanceof Error ? error.message : error)}`,
+							`${logSymbols.error} ${colors.blue(file)} ${error instanceof Error ? error.message : String(error)}`,
 						);
 					}
 				}
