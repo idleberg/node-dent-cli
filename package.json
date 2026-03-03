@@ -23,7 +23,7 @@
 	"type": "module",
 	"typings": "bin/cli.d.ts",
 	"bin": {
-		"dent": "index.mjs"
+		"dent": "bin/cli.mjs"
 	},
 	"engines": {
 		"node": ">=18.0.0"
@@ -44,19 +44,11 @@
 		"picocolors": "^1.0.0"
 	},
 	"devDependencies": {
+		"@idleberg/configs": "^0.4.2",
 		"@types/node": "^18.19.3",
-		"@typescript-eslint/eslint-plugin": "^6.16.0",
-		"@typescript-eslint/parser": "^6.16.0",
-		"eslint": "^8.56.0",
-		"eslint-plugin-json": "^3.1.0",
-		"husky": "^8.0.3",
-		"lint-staged": "^15.2.0",
-		"npm-run-all2": "^6.1.1",
-		"tslib": "^2.6.2",
-		"tsup": "^8.0.1",
+		"concurrently": "^9.2.1",
+		"tsdown": "^0.20.3",
 		"typescript": "^5.3.3"
 	},
-	"lint-staged": {
-		"*.(json|ts)": "eslint --cache --fix"
-	}
+	"packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017"
 }
