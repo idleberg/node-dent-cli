@@ -41,7 +41,7 @@ async function main() {
 
 	const format = createFormatter({
 		endOfLines: options.eol,
-		indentSize: options.indent,
+		indentSize: options.indentSize,
 		trimEmptyLines: options.trim,
 		useTabs: !options.useSpaces
 	});
