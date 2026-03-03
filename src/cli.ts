@@ -17,7 +17,13 @@ async function main() {
 		.version(version)
 		.description('CLI tool to format NSIS scripts')
 		.arguments('<file...>')
-		.option('--eol <"crlf"|"lf">', 'control how line-breaks are represented', value => ['crlf', 'lf'].includes(value))
+		.option('--eol <"crlf"|"lf">', 'control how line-breaks are represented', value => {
+			if (!['crlf', 'lf'].includes(value)) {
+				throw new Error(`Invalid value for --eol: "${value}". Expected "crlf" or "lf".`);
+			}
+
+			return value;
+		})
 		.option('-i, --indent-size <number>', 'number of units per indentation level', value => parseInt(value, 10), 2)
 		.option('-s, --use-spaces', 'indent with spaces instead of tabs', false)
 		.option('--trim', 'trim empty lines', true)
