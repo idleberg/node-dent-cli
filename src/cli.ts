@@ -68,6 +68,11 @@ async function main() {
 
 	await Promise.all(
 		files.map(async (file) => {
+			if (!file.endsWith('.nsi') && !file.endsWith('.nsh')) {
+				console.warn(`${logSymbols.warning} ${colors.blue(file)} is not an NSIS script, skipping.`);
+				return;
+			}
+
 			if (isVerbose) {
 				console.time(`${logSymbols.success} ${colors.blue(file)}`);
 			}
