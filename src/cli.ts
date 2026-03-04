@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { platform } from 'node:os';
 import { promises as fs } from 'node:fs';
+import { platform } from 'node:os';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createFormatter } from '@nsis/dent';
@@ -22,7 +22,7 @@ async function main() {
 		.arguments('<file...>')
 		.option('--eol <"crlf"|"lf">', 'control how line-breaks are represented', (value) => {
 			if (!['crlf', 'lf'].includes(value)) {
-				const defaultLineEndings = platform() === 'win32' ? 'crlf' : 'lf'
+				const defaultLineEndings = platform() === 'win32' ? 'crlf' : 'lf';
 				console.log(`${logSymbols.warning} Invalid EOL value provided, defaulting to "${defaultLineEndings}".`);
 
 				return defaultLineEndings;
