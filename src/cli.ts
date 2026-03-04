@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { platform } from 'node:os';
 import { promises as fs } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -21,7 +22,10 @@ async function main() {
 		.arguments('<file...>')
 		.option('--eol <"crlf"|"lf">', 'control how line-breaks are represented', (value) => {
 			if (!['crlf', 'lf'].includes(value)) {
-				throw new Error(`Invalid value for --eol: "${value}". Expected "crlf" or "lf".`);
+				const defaultLineEndings = platform() === 'win32' ? 'crlf' : 'lf'
+				console.log(`${logSymbols.warning} Invalid EOL value provided, defaulting to "${defaultLineEndings}".`);
+
+				return defaultLineEndings;
 			}
 
 			return value;
