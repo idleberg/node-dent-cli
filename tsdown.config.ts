@@ -10,8 +10,8 @@ export default defineConfig((options) => {
 		entry: {
 			cli: 'src/main.ts',
 		},
-		external: [
-			// ensure we always read the current version from the manifests
+		neverBundle: [
+			// ensure we always read the current version from the manifest
 			'../package.json',
 		],
 		format: 'esm',

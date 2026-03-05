@@ -48,7 +48,7 @@
 		"@types/node": "^24.11.0",
 		"concurrently": "^9.2.1",
 		"np": "^11.0.2",
-		"tsdown": "^0.20.3",
+		"tsdown": "^0.21.0",
 		"typescript": "^5.3.3"
 	},
 	"pnpm": {
