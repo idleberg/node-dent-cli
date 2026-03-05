@@ -54,6 +54,10 @@ async function main() {
 		console.log('\nCLI parameters:', { args, options });
 	}
 
+	if (options.indentSize !== 2 && options.useSpaces === false) {
+		console.warn(`${logSymbols.warning} The "indent-size" option is ignored when "use-spaces" is not set.`);
+	}
+
 	const format = createFormatter({
 		endOfLines: options.eol,
 		indentSize: options.indentSize,
