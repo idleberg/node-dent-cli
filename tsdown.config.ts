@@ -7,7 +7,13 @@ export default defineConfig((options) => {
 		target: 'node20',
 		clean: isProduction,
 		dts: isProduction,
-		entry: ['src/cli.ts'],
+		entry: {
+			cli: 'src/main.ts',
+		},
+		external: [
+			// ensure we always read the current version from the manifests
+			'../package.json',
+		],
 		format: 'esm',
 		minify: isProduction,
 		outDir: 'bin',

@@ -1,35 +1,40 @@
 #!/usr/bin/env node
 
-import { promises as fs } from 'node:fs';
 import { platform } from 'node:os';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { createFormatter } from '@nsis/dent';
 import { Command } from 'commander';
-import { glob } from 'glob';
-import logSymbols from 'log-symbols';
-import colors from 'picocolors';
+import { logger } from './log.ts';
+import { getVersion } from './utils.ts';
 
-await main();
+export async function handleCLI() {
+	const program = new Command('dent');
 
-async function main() {
-	const program = new Command();
 	const version = await getVersion();
+	const defaultLineEndings = platform() === 'win32' ? 'crlf' : 'lf';
 
 	program
 		.version(version)
+		.configureOutput({
+			writeOut: (message: string) => logger.log(message),
+			writeErr: (message: string) => logger.error(message),
+		})
 		.description('CLI tool to format NSIS scripts')
 		.arguments('<file...>')
-		.option('--eol <"crlf"|"lf">', 'control how line-breaks are represented', (value) => {
-			if (!['crlf', 'lf'].includes(value)) {
-				const defaultLineEndings = platform() === 'win32' ? 'crlf' : 'lf';
-				console.log(`${logSymbols.warning} Invalid EOL value provided, defaulting to "${defaultLineEndings}".`);
+		.option('-D, --debug', 'prints additional debug messages', false)
+		.optionsGroup('Formatting Options')
+		.option(
+			'-e, --eol <"crlf"|"lf">',
+			'control how line-breaks are represented',
+			(value) => {
+				if (!['crlf', 'lf'].includes(value)) {
+					logger.warn(`Invalid EOL value provided, defaulting to "${defaultLineEndings}".`);
 
-				return defaultLineEndings;
-			}
+					return defaultLineEndings;
+				}
 
-			return value;
-		})
+				return value;
+			},
+			defaultLineEndings,
+		)
 		.option(
 			'-i, --indent-size <number>',
 			'number of units per indentation level',
@@ -37,10 +42,8 @@ async function main() {
 			2,
 		)
 		.option('-s, --use-spaces', 'indent with spaces instead of tabs', false)
-		.option('--trim', 'trim empty lines', true)
-		.option('--write', 'edit files in-place', false)
-		.option('--quiet', 'suppress output', false)
-		.option('--debug', 'prints additional debug messages', false)
+		.option('-t, --trim', 'trim empty lines', true)
+		.option('-w, --write', 'edit files in-place', false)
 		.parse(process.argv);
 
 	const options = program.opts();
@@ -51,82 +54,12 @@ async function main() {
 	}
 
 	if (options.debug) {
-		console.log('\nCLI parameters:', { args, options });
+		logger.debug('\nCLI parameters:', { args, options });
 	}
 
 	if (options.indentSize !== 2 && options.useSpaces === false) {
-		console.warn(`${logSymbols.warning} The "indent-size" option is ignored when "use-spaces" is not set.`);
+		logger.warn(`The "indent-size" option is ignored when "use-spaces" is not set.`);
 	}
 
-	const format = createFormatter({
-		endOfLines: options.eol,
-		indentSize: options.indentSize,
-		trimEmptyLines: options.trim,
-		useTabs: !options.useSpaces,
-	});
-
-	const files = await glob(args);
-	const isVerbose = options.write && !options.quiet;
-
-	if (isVerbose && !options.debug) {
-		console.log(/* let it breathe */);
-	}
-
-	console.time('\nCompleted');
-
-	await Promise.all(
-		files.map(async (file) => {
-			if (!file.endsWith('.nsi') && !file.endsWith('.nsh')) {
-				console.warn(`${logSymbols.warning} ${colors.blue(file)} is not an NSIS script, skipping.`);
-				return;
-			}
-
-			if (isVerbose) {
-				console.time(`${logSymbols.success} ${colors.blue(file)}`);
-			}
-
-			const rawContents = (await fs.readFile(file)).toString();
-			const formattedContents = format(rawContents);
-
-			if (options.debug) {
-				console.log('\nConversion:', {
-					raw: rawContents,
-					formatted: formattedContents,
-				});
-			}
-
-			if (options.write) {
-				try {
-					await fs.writeFile(file, formattedContents, {
-						encoding: 'utf-8',
-					});
-
-					if (isVerbose) {
-						console.timeEnd(`${logSymbols.success} ${colors.blue(file)}`);
-					}
-				} catch (error) {
-					if (isVerbose) {
-						console.error(
-							`${logSymbols.error} ${colors.blue(file)} ${error instanceof Error ? error.message : String(error)}`,
-						);
-					}
-				}
-			} else {
-				console.log(formattedContents);
-			}
-		}),
-	);
-
-	if (isVerbose) {
-		console.timeEnd('\nCompleted');
-	}
-}
-
-async function getVersion() {
-	const __filename = fileURLToPath(import.meta.url);
-	const __dirname = dirname(__filename);
-
-	const { version } = JSON.parse(await fs.readFile(resolve(__dirname, '../package.json'), 'utf8'));
-
-	return version || 'dev';
+	return { args, options };
 }
