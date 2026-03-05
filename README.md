@@ -32,20 +32,21 @@ $ npx dent --help
 ### Options
 
 ```
-Usage: index [options] <file...>
+Usage: dent [options] <file...>
 
 CLI tool to format NSIS scripts
 
 Options:
   -V, --version               output the version number
-  --eol <"crlf"|"lf">         control how line-breaks are represented
+  -D, --debug                 prints additional debug messages (default: false)
+  -h, --help                  display help for command
+
+Formatting Options
+  -e, --eol <"crlf"|"lf">     control how line-breaks are represented (default: "lf")
   -i, --indent-size <number>  number of units per indentation level (default: 2)
   -s, --use-spaces            indent with spaces instead of tabs (default: false)
-  --trim                      trim empty lines (default: true)
-  --write                     edit files in-place (default: false)
-  --quiet                     suppress output (default: false)
-  --debug                     prints additional debug messages (default: false)
-  -h, --help                  display help for command
+  -t, --trim                  trim empty lines (default: true)
+  -w, --write                 edit files in-place (default: false)
 ```
 
 ## Related
