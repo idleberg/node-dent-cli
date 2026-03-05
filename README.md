@@ -51,7 +51,7 @@ Formatting Options
 
 ## Related
 
-- [`dent` Library](https://www.npmjs.com/package/@nsis/dent)
+- [dent](https://www.npmjs.com/package/@nsis/dent)
 
 ## License
 
