@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@nsis/dent':
-        specifier: ^0.4.1
-        version: 0.4.2
+        specifier: ^0.5.0
+        version: 0.5.0
       commander:
         specifier: ^14.0.3
         version: 14.0.3
@@ -634,9 +634,9 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@nsis/dent@0.4.2':
-    resolution: {integrity: sha512-XelwXl010Rd/lsJNgLQB0v7BlBcZwqshlcf8a4K0WZXEipwmP6K5SaqVzH0CDnTLKtp4FdibDj79U5z0dOFOaQ==}
-    engines: {node: '>=18.0.0'}
+  '@nsis/dent@0.5.0':
+    resolution: {integrity: sha512-rk8uidhgplq1vBqXf0pwtxn8xISXT0ofdh3KuWbZM2lS0WIwdM+gp6F3WrHaXlSVCJN8Z+lsRgeRi7xgbNzkyw==}
+    engines: {node: '>=20.0.0'}
 
   '@oxc-project/types@0.115.0':
     resolution: {integrity: sha512-4n91DKnebUS4yjUHl2g3/b2T+IUdCfmoZGhmwsovZCDaJSs+QkVAM+0AqqTxHSsHfeiMuueT75cZaZcT/m0pSw==}
@@ -3274,7 +3274,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
 
-  '@nsis/dent@0.4.2':
+  '@nsis/dent@0.5.0':
     dependencies:
       detect-newline: 4.0.1
 
