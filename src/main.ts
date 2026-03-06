@@ -1,6 +1,6 @@
 import { glob, readFile, writeFile } from 'node:fs/promises';
 import { createFormatter } from '@nsis/dent';
-import { blue } from 'kleur/colors';
+import { blue, dim } from 'kleur/colors';
 import { handleCLI } from './cli.ts';
 import { logger } from './log.ts';
 import { fileExists } from './utils.ts';
@@ -51,7 +51,7 @@ for await (const file of files) {
 			encoding: 'utf-8',
 		});
 
-		logger.info(`${blue(file)} formatted in ${duration}ms.`);
+		logger.info(`${blue(file)} formatted ${dim(`(${duration}ms)`)}`);
 	} else {
 		process.stdout.write(formattedContents);
 	}
@@ -61,5 +61,5 @@ if (options.write) {
 	const outerEndTime = performance.now();
 	const outerDuration = Math.round(outerEndTime - outerStartTime);
 
-	logger.success(`Completed formatting in ${outerDuration}ms.`);
+	logger.success(`Completed in ${outerDuration}ms.`);
 }
