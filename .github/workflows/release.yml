@@ -36,7 +36,12 @@ jobs:
         shell: bash
 
       - name: Create zip
+        run: 7z a "deno-cli-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}.zip" dent${{ matrix.ext }} LICENSE
+        if: runner.os == 'Windows'
+
+      - name: Create zip
         run: zip "deno-cli-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}.zip" dent${{ matrix.ext }} LICENSE
+        if: runner.os != 'Windows'
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
