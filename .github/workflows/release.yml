@@ -10,15 +10,6 @@ permissions:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        include:
-          - target: bun-windows-x64-modern
-            platform: win32
-          - target: bun-linux-x64-modern
-            platform: linux
-          - target: bun-darwin-arm64
-            platform: darwin
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,19 +19,19 @@ jobs:
       - name: Build executable
         run: |
           bun install
-          bun build src/main.ts --compile --target=${{ matrix.target }} --outfile dent
+          bun build src/main.ts --compile --target=bun-windows-x64-modern --outfile dent
 
       - name: Get version
         id: version
         run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
 
       - name: Create zip
-        run: zip "deno-cli-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}.zip" dent${{ matrix.platform == 'win32' && '.exe' || '' }} LICENSE
+        run: zip "deno-cli-${{ steps.version.outputs.VERSION }}-windows-x64.zip" dent.exe LICENSE
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: deno-cli-${{ matrix.platform }}
+          name: deno-cli-windows-x64
           path: deno-cli-*.zip
 
   release:
