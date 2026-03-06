@@ -22,7 +22,7 @@ You could install the `dent` CLI globally
 
 ```sh
 $ npm install --global @nsis/dent-cli
-$ dent --help
+$ npx dent --help
 ```
 
 ### Single use
