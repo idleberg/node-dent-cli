@@ -53,7 +53,7 @@ for await (const file of files) {
 
 		logger.info(`${blue(file)} formatted in ${duration}ms.`);
 	} else {
-		console.log(formattedContents);
+		process.stdout.write(formattedContents);
 	}
 }
 
