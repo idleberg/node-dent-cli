@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            platform: win32
+            ext: .exe
+          - os: ubuntu-latest
+            platform: linux
+            ext: ''
+          - os: macos-latest
+            platform: darwin
+            ext: ''
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Build executable
+        run: bun build src/main.ts --compile --outfile bun${{ matrix.ext }}
+
+      - name: Get version
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Create zip
+        run: zip "deno-cli-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}.zip" bun${{ matrix.ext }} LICENSE
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deno-cli-${{ matrix.platform }}
+          path: deno-cli-*.zip
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: deno-cli-*.zip
