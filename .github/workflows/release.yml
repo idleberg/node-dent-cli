@@ -31,13 +31,13 @@ jobs:
         run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
 
       - name: Create zip
-        run: zip "deno-cli-${{ steps.version.outputs.VERSION }}-${{ matrix.target }}.zip" dent.exe LICENSE
+        run: zip "dent-cli-${{ steps.version.outputs.VERSION }}-${{ matrix.target }}.zip" dent.exe LICENSE
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: deno-cli-${{ matrix.target }}
-          path: deno-cli-*.zip
+          name: dent-cli-${{ matrix.target }}
+          path: dent-cli-*.zip
 
   release:
     needs: build
@@ -51,4 +51,4 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
-          files: deno-cli-*.zip
+          files: dent-cli-*.zip
