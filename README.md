@@ -14,6 +14,10 @@ This is a TypeScript application that depends on a [NodeJS](https://nodejs.org) 
 
 ### Installation
 
+> [!TIP]
+>
+> If you don't use any JavaScript runtime, download a binary the [latest version](/https://github.com/idleberg/node-dent-cli/releases/latest) for Windows.
+
 You could install the `dent` CLI globally
 
 ```sh
