@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   build:
@@ -15,10 +15,10 @@ jobs:
             ext: .exe
           - os: ubuntu-latest
             platform: linux
-            ext: ''
+            ext: ""
           - os: macos-latest
             platform: darwin
-            ext: ''
+            ext: ""
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
 
       - name: Build executable
-        run: bun build src/main.ts --compile --outfile bun${{ matrix.ext }}
+        run: bun build src/main.ts --compile --outfile dent${{ matrix.ext }}
 
       - name: Get version
         id: version
@@ -34,7 +34,7 @@ jobs:
         shell: bash
 
       - name: Create zip
-        run: zip "deno-cli-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}.zip" bun${{ matrix.ext }} LICENSE
+        run: zip "deno-cli-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}.zip" dent${{ matrix.ext }} LICENSE
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
